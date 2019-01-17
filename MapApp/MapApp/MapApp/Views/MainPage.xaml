@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MapApp"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="MapApp.MainPage">
+
+    <ContentPage.Resources>
+        <Color x:Key="gMapYellow">#FFE047</Color>
+        <Color x:Key="gMapBlue">#4A89F3</Color>
+        <Color x:Key="gMapGreen">#1EA362</Color>
+        <Color x:Key="gMapRed">#DD4B3E</Color>
+        <Color x:Key="gMapGray">#D3D3D3</Color>
+        <Color x:Key="darkText">#404040</Color>
+        <Color x:Key="lightText">White</Color>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content >
+        <ScrollView BackgroundColor="Black">
+            <Grid Padding="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <StackLayout Grid.Row="0" Grid.Column="0" Spacing="4">
+                    <Picker SelectedIndex="{Binding BussesSelectedIndex}" 
+                            ItemsSource="{Binding Busses}" x:Name="pckrBus"
+                            HorizontalOptions="Fill" VerticalOptions="Fill"
+                            BackgroundColor="{StaticResource gMapGray}" Title="Bir Otobüs Seçin" 
+                            TextColor="{StaticResource darkText}"/>
+
+                    <Grid Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Spacing="4"> 
+                            <Button HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="lblLatLong" 
+                                    TextColor="{StaticResource lightText}" BackgroundColor="Transparent" 
+                                    BorderColor="{StaticResource gMapGreen}" BorderRadius="8" BorderWidth="2" /> 
+                            <Button HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="lblNearestStation" 
+                                    TextColor="{StaticResource lightText}" BackgroundColor="Transparent" 
+                                    BorderColor="{StaticResource gMapYellow}" BorderRadius="8" BorderWidth="2" 
+                                    Text="Şu anda mavi nokta ile gösterilen yerde bulunuyorsunuz.."/> 
+                            <Button HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="lblTimeLeft" 
+                                    TextColor="{StaticResource lightText}" BackgroundColor="Transparent" 
+                                    BorderColor="Transparent" BorderRadius="8" BorderWidth="2" /> 
+                        </StackLayout>
+
+
+                        <Button Grid.Row="0" Grid.Column="1" x:Name="btnRefresh" 
+                                HorizontalOptions="EndAndExpand" VerticalOptions="Fill" 
+                                BackgroundColor="Transparent"  BorderColor="Transparent" 
+                                Image="round_refresh_white_36.png" /> 
+                    </Grid>
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="StartAndExpand" 
+                             Padding="5" BackgroundColor="{StaticResource PrimaryBlue}">
+                    <maps:Map HorizontalOptions="Fill" HeightRequest="600" 
+                              x:Name="MyMap" IsShowingUser="True" MapType="Street"
+                              HasScrollEnabled="True" HasZoomEnabled="True"/>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
